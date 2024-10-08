@@ -1,0 +1,56 @@
+<main>
+    <div style="display: flex; margin-left: 16px; margin-right: 16px;">
+        <img *ngIf="band" style="min-width: 200px; max-height: 128px; margin-top: 20px;">
+        <div class="bandInfo" *ngIf="band">
+            <h2 style="margin-top: 20px;margin-bottom: 20px;">{{ band.bandName }}</h2>
+            <p>Country: {{ band.country }}</p>
+            <p *ngIf="band.active">Status: Active</p>
+            <p *ngIf="!band.active">Status: Split-up</p>
+            <p>Year Formed: {{ band.startYear }}</p>
+            <p *ngIf="band.endYear">Year Ended: {{band.endYear}}</p>
+            <!-- Add more fields as needed -->
+        </div>
+        <div *ngIf="band" style="justify-content: flex-end; margin-left: 544px;">
+            <p style="height: 24px; width: 200px; margin-top: 20px; margin-bottom: 8px; font-weight: bold; border-bottom: 0.1px solid #31312F;">Artist</p>
+            <a (click)="onEditArtist(band.band_Id)" style="font-size: 16px;">Edit Artist</a>
+            <br>
+            <a (click)="onSubmitRelease(band.band_Id)" style="font-size: 16px;">Submit Release</a>
+          </div>
+  
+        <div *ngIf="!band">
+            <p>Loading band details...</p>
+        </div>
+    </div>
+
+    <div *ngIf="band" style="width: 1232px; margin-left: 16px; margin-right: 16px; border-top: 1px solid #31312F;">
+        <div style="margin-left: 232px;">
+            <h4>Releases</h4>
+            <div style="font-size: 14px;">Total releases: {{releases.length}}</div>
+            <!--<p class="releaseHeader">Albums</p>-->
+            <div *ngFor="let release of releases; let i = index">
+                
+                <!-- Type Headers -->
+                <!-- Display the header if it's the first release of that type (type_Id) -->
+                <p *ngIf="i === 0 || releases[i - 1].type_Id !== release.type_Id" class="releaseHeader">
+                    {{ getTypeName(release.type_Id) }}
+                </p>
+                
+                <!-- Releases -->
+                <div class="releaseContent">
+                    <img class="releaseImage">
+                    <div>
+                        <a (click)="onRelease(release.release_Id)">{{ release.releaseName }}</a>
+                        ({{getTypeName(release.type_Id)}})
+                    </div>
+                    <div>{{release.releaseYear}}</div>
+                    <div *ngIf="activeUser" class="releaseButtons">
+                        <button *ngIf="!isAddedToCollection(release.release_Id)" (click)="addToCollection(activeUser.user_Id, release.release_Id)" style="margin-left: auto;">Add to Collection</button>
+                        <button *ngIf="isAddedToCollection(release.release_Id)" style="margin-left: auto; background-color: lightgreen; color: black;">Added to Collection</button>
+                        <button *ngIf="!isAddedToWantlist(release.release_Id)" (click)="addToWantlist(activeUser.user_Id, release.release_Id)" style="margin-left: 8px;">Add to Wantlist</button>
+                        <button *ngIf="isAddedToWantlist(release.release_Id)" style="margin-left: 8px; background-color: lightgreen; color: black;">Added to Wantlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

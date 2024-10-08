@@ -1,0 +1,24 @@
+<div class="register-background">
+    <div class="box">
+        <div style="text-align: center;">
+            <a href="http://localhost:4200/Start">
+                <img src="assets/ToneForum-Logo.svg" style="width: 120px;" />
+            </a>
+            </div>
+        <div style="font-size: 24px; text-align: center; margin-bottom: 16px;">Welcome</div>
+        <div style="height: 18px; font-size: 14px; text-align: center; margin-bottom: 16px;">Sign up to Tone Forum to continue</div>
+        <div style="margin: 20px">
+            <input [(ngModel)]="firstname" name="FirstName" id="FirstName" class="textbox" type="text" placeholder="First name" required="sgjsdsfgf">
+            <input [(ngModel)]="lastname" name="LastName" id="LastName" class="textbox" type="text" placeholder="Last name">
+            <input [(ngModel)]="username" name="UserName" id="UserName" class="textbox" type="text" placeholder="Username">
+            <input [(ngModel)]="email" name="Email" id="Email" class="textbox" type="text" placeholder="Email address">
+            <input [(ngModel)]="password" name="Password" id="Password" class="textbox" type="text" placeholder="Password">
+            <input name="Password2" id="Password2" class="textbox" type="text" placeholder="Same Password again">
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" style="font-size: 14px;">Read terms & policy</a>
+            <div style="font-size: 14px; margin-bottom: 12px; height: 18px;"><input [(ngModel)]="accepttermsandpolicy" (click)="toggleAcceptTerms()" name="AcceptTermsAndPolicy" id="AcceptTermsAndPolicy" type="checkbox">Accept terms & policy</div>
+            
+            <button (click)="createUser()" [disabled]="!firstname || !lastname || !username || !email || !password || !accepttermsandpolicy" class="button" style="width: 99%; color: #F5F4EC;">Sign Up</button>
+            <div style="font-size: 14px;">Already have an account? <a href="http://localhost:4200/Login">Log in</a></div>
+        </div>
+    </div>
+</div>

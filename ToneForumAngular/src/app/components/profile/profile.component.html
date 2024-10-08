@@ -1,0 +1,48 @@
+<div class="profile-background">
+    <!-- View profile information -->
+    <div *ngIf="viewActive" class="box">
+        <div style="text-align: center;">
+            </div>
+        <div style="font-size: 24px; text-align: center; margin-bottom: 16px;">{{activeUser.email}}</div>
+        <div style="height: 18px; font-size: 14px; text-align: center; margin-bottom: 16px;">View/Update your current profile info</div>
+        <div style="margin: 20px">
+            <div style="font-weight: bold; font-size: 14px;">First Name</div>
+            <input name="FirstName" id="FirstName" class="textbox" type="text" value={{activeUser.firstName}} readonly>
+            <div style="font-weight: bold; font-size: 14px;">Last Name</div>
+            <input name="LastName" id="LastName" class="textbox" type="text" value={{activeUser.lastName}} readonly>
+            <div style="font-weight: bold; font-size: 14px;">Username</div>
+            <input name="UserName" id="UserName" class="textbox" type="text" value={{activeUser.userName}} readonly>
+            <div style="font-weight: bold; font-size: 14px;">Email Address</div>
+            <input name="Email" id="Email" class="textbox" type="text" value={{activeUser.email}} readonly>
+            <div style="font-weight: bold; font-size: 14px;">Password</div>
+            <input name="Password" id="Password" class="textbox" type="text" value={{activeUser.password}} readonly>
+            <div>
+                <button (click)="toggleView()" class="updateButton" style="color: #F5F4EC;">Change profile Info</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update profile information -->
+    <div *ngIf="!viewActive" class="box">
+        <div style="text-align: center;">
+            </div>
+        <div style="font-size: 24px; text-align: center; margin-bottom: 16px;">{{activeUser.email}}</div>
+        <div style="height: 18px; font-size: 14px; text-align: center; margin-bottom: 16px;">View/Update your current profile info</div>
+        <div style="margin: 20px">
+            <div style="font-weight: bold; font-size: 14px;">First Name</div>
+            <input [(ngModel)]="firstname" name="FirstName" id="FirstName" class="textbox" type="text" value={{activeUser.firstName}}>
+            <div style="font-weight: bold; font-size: 14px;">Last Name</div>
+            <input [(ngModel)]="lastname" name="LastName" id="LastName" class="textbox" type="text" value={{activeUser.lastName}}>
+            <div style="font-weight: bold; font-size: 14px;">Username</div>
+            <input [(ngModel)]="username" name="UserName" id="UserName" class="textbox" type="text" value={{activeUser.userName}}>
+            <div style="font-weight: bold; font-size: 14px;">Email Address</div>
+            <input [(ngModel)]="email" name="Email" id="Email" class="textbox" type="text" value={{activeUser.email}}>
+            <div style="font-weight: bold; font-size: 14px;">Password</div>
+            <input [(ngModel)]="password" name="Password" id="Password" class="textbox" type="text" value={{activeUser.password}}>
+            <div>
+                <button (click)="updateUser()" [disabled]="!firstname || !lastname || !username || !password" class="updateButton" style="width: 47%; color: #F5F4EC;">Update</button>
+                <button (click)="toggleView()" class="cancelButton" style="width: 47%; margin-left: 5%;">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

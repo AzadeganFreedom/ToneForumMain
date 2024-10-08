@@ -1,0 +1,26 @@
+<div class="profile-background">
+    <!-- Submit Band information -->
+    <div class="box">
+        <div style="text-align: center;">
+            </div>
+        <div style="font-weight: bold; font-size: 24px; text-align: center; margin-bottom: 16px;">Submit Artist</div>
+        <!--<div style="height: 18px; font-size: 14px; text-align: center; margin-bottom: 16px;">View/Update current info for {{band.bandName}}</div>-->
+        <div style="margin: 20px">
+            <div style="font-weight: bold; font-size: 14px;">Band Name</div>
+            <input [(ngModel)]="bandname" name="BandName" id="BandName" class="textbox" type="text">
+            <div style="font-weight: bold; font-size: 14px;">Country</div>
+            <input [(ngModel)]="country" name="Country" id="Country" class="textbox" type="text">
+            <div style="font-weight: bold; font-size: 14px;">Status</div>
+            is the band active? <input [(ngModel)]="active" name="Active" id="Active" type="checkbox">
+            <br>
+            <br>
+            <div style="font-weight: bold; font-size: 14px;">Start Year</div>
+            <input [(ngModel)]="startyear" name="StartYear" id="StartYear" class="textbox" type="number">
+            <div style="font-weight: bold; font-size: 14px;">End Year</div><input [(ngModel)]="endyear" name="EndYear" id="EndYear" class="textbox" type="number">
+            <div>
+                <button (click)="submitBand()" class="updateButton" style="width: 99%; color: #F5F4EC;">Submit</button>
+            </div>
+            
+        </div>
+    </div>
+</div>

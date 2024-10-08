@@ -1,0 +1,61 @@
+<div class="profile-background">
+    <!-- View Release data -->
+    <div *ngIf="viewActive" class="box">
+        <div style="text-align: center;">
+            </div>
+        <div style="font-weight: bold; font-size: 24px; text-align: center; margin-bottom: 16px;">{{release.releaseName}}</div>
+        <div style="height: 18px; font-size: 14px; text-align: center; margin-bottom: 16px;">View/Update current info for {{release.releaseName}}</div>
+        <div style="margin: 20px">
+            <div style="font-weight: bold; font-size: 14px;">Release Name</div>
+            <input name="ReleaseName" id="ReleaseName" class="textbox" type="text" readonly [value]="release.releaseName">
+            <div style="font-weight: bold; font-size: 14px;">Release Year</div>
+            <input name="ReleaseYear" id="ReleaseYear" class="textbox" type="number" readonly [value]="release.releaseYear">
+            <div style="font-weight: bold; font-size: 14px;">Type</div>
+
+            <select class="select" name="types" id="types" disabled>
+                <option *ngFor="let type of types" [value]="type.type_Id">{{ type.typeName }}</option>
+            </select>
+
+            <div style="font-weight: bold; font-size: 14px;">Genres</div>
+            <!-- Assuming you're using a multi-select dropdown -->
+            <select style="height: 90px;" class="select" [(ngModel)]="genre_id" name="genres" id="genres" multiple disabled>
+                <option *ngFor="let genre of release.genre_Id" [value]="genre.genre_Id">{{ getGenreById(genre) }}</option>
+            </select>
+
+            <div>
+                <button (click)="toggleView()" class="updateButton" style="width: 47%; color: #F5F4EC;">Change info</button>
+                <button (click)="onCancel(this.release.release_Id)" class="cancelButton" style="width: 47%; margin-left: 5%;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Release data -->
+    <div *ngIf="!viewActive" class="box">
+        <div style="text-align: center;">
+            </div>
+        <div style="font-weight: bold; font-size: 24px; text-align: center; margin-bottom: 16px;">{{release.releaseName}}</div>
+        <div style="height: 18px; font-size: 14px; text-align: center; margin-bottom: 16px;">View/Update current info for {{release.releaseName}}</div>
+        <div style="margin: 20px">
+            <div style="font-weight: bold; font-size: 14px;">Release Name</div>
+            <input [(ngModel)]="releasename" name="ReleaseName" id="ReleaseName" class="textbox" type="text">
+            <div style="font-weight: bold; font-size: 14px;">Release Year</div>
+            <input [(ngModel)]="releaseyear" name="ReleaseYear" id="ReleaseYear" class="textbox" type="number">
+            <div style="font-weight: bold; font-size: 14px;">Type</div>
+
+            <select class="select" [(ngModel)]="type_id" name="types" id="types">
+                <option *ngFor="let type of types" [value]="type.type_Id">{{ type.typeName }}</option>
+            </select>
+
+            <div style="font-weight: bold; font-size: 14px;">Genres (mutliple choice)</div>
+            <!-- Assuming you're using a multi-select dropdown -->
+            <select style="height: 90px;" class="select" [(ngModel)]="genre_id" name="genres" id="genres" multiple>
+                <option *ngFor="let genre of genres" [value]="genre.genre_Id">{{ genre.genreName }}</option>
+            </select>
+
+            <div>
+                <button (click)="updateRelease()" class="updateButton" style="width: 47%; color: #F5F4EC;">Update</button>
+                <button (click)="toggleView()" class="cancelButton" style="width: 47%; margin-left: 5%;">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

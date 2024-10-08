@@ -1,0 +1,31 @@
+<div class="profile-background">
+    <!-- Submit Release data -->
+    <div class="box">
+        <div style="text-align: center;">
+            </div>
+        <div style="font-weight: bold; font-size: 24px; text-align: center; margin-bottom: 16px;">{{band.bandName}}</div>
+        <div style="height: 18px; font-size: 14px; text-align: center; margin-bottom: 16px;">Submit a release for {{band.bandName}}</div>
+        <div style="margin: 20px">
+            <div style="font-weight: bold; font-size: 14px;">Release Name</div>
+            <input [(ngModel)]="releasename" name="ReleaseName" id="ReleaseName" class="textbox" type="text">
+            <div style="font-weight: bold; font-size: 14px;">Release Year</div>
+            <input [(ngModel)]="releaseyear" name="ReleaseYear" id="ReleaseYear" class="textbox" type="number">
+            <div style="font-weight: bold; font-size: 14px;">Type</div>
+
+            <select class="select" [(ngModel)]="type_id" name="types" id="types">
+                <option *ngFor="let type of types" [value]="type.type_Id">{{ type.typeName }}</option>
+            </select>
+
+            <div style="font-weight: bold; font-size: 14px;">Genres (mutliple choice)</div>
+            <!-- Assuming you're using a multi-select dropdown -->
+            <select style="height: 90px;" class="select" [(ngModel)]="genre_id" name="genres" id="genres" multiple>
+                <option *ngFor="let genre of genres" [value]="genre.genre_Id">{{ genre.genreName }}</option>
+            </select>
+
+            <div>
+                <button (click)="submitRelease()" class="updateButton" style="width: 47%; color: #F5F4EC;">Submit</button>
+                <button (click)="onCancel(this.band.band_Id)" class="cancelButton" style="width: 47%; margin-left: 5%;">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

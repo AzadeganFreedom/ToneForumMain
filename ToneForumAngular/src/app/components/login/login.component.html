@@ -1,0 +1,17 @@
+<div class="register-background">
+    <div class="box">
+        <div style="text-align: center;">
+            <a href="http://localhost:4200/Start">
+                <img src="assets/ToneForum-Logo.svg" style="width: 120px;" />
+            </a>
+            </div>
+        <div style="font-size: 24px; text-align: center; margin-bottom: 16px;">Welcome</div>
+        <div style="height: 18px; font-size: 14px; text-align: center; margin-bottom: 16px;">Log in to Tone Forum to continue</div>
+        <div style="margin: 20px">
+            <input [(ngModel)]="searchUsername" name="UserName" id="UserName" class="textbox" type="text" placeholder="Username">
+            <input [(ngModel)]="password" name="Password" id="Password" class="textbox" type="password" placeholder="Password">
+            <button (click)="onSignUp()" class="button" [disabled]="!searchUsername || !password">Sign Up</button>
+            <div style="font-size: 14px;">Don't have an account? <a href="http://localhost:4200/Register">Sign up</a></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="profile-background">
+    <!-- View band information -->
+    <div *ngIf="viewActive" class="box">
+        <div style="text-align: center;">
+            </div>
+        <div style="font-weight: bold; font-size: 24px; text-align: center; margin-bottom: 16px;">{{band.bandName}}</div>
+        <div style="height: 18px; font-size: 14px; text-align: center; margin-bottom: 16px;">View/Update current info for {{band.bandName}}</div>
+        <div style="margin: 20px">
+            <div style="font-weight: bold; font-size: 14px;">Band Name</div>
+            <input class="textbox" type="text" value={{band.bandName}} readonly>
+            <div style="font-weight: bold; font-size: 14px;">Country</div>
+            <input class="textbox" type="text" value={{band.country}} readonly>
+            <div style="font-weight: bold; font-size: 14px;">Status</div>
+            <input *ngIf="band.active" class="textbox" type="text" value="Active" readonly>
+            <input *ngIf="!band.active" class="textbox" type="text" value="Split-up" readonly>
+            <div style="font-weight: bold; font-size: 14px;">Start Year</div>
+            <input class="textbox" type="text" value={{band.startYear}} readonly>
+            <div style="font-weight: bold; font-size: 14px;">End Year</div>
+            <input class="textbox" type="text" value={{band.endYear}} readonly>
+            <div>
+                <button (click)="toggleView()" class="updateButton" style="width: 47%; color: #F5F4EC;">Change band Info</button>
+                <button (click)="onCancel(band.band_Id)" class="cancelButton" style="width: 47%; margin-left: 5%;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update profile information -->
+    <div *ngIf="!viewActive" class="box">
+        <div style="text-align: center;">
+            </div>
+        <div style="font-weight: bold; font-size: 24px; text-align: center; margin-bottom: 16px;">{{band.bandName}}</div>
+        <div style="height: 18px; font-size: 14px; text-align: center; margin-bottom: 16px;">View/Update current info for {{band.bandName}}</div>
+        <div style="margin: 20px">
+            <div style="font-weight: bold; font-size: 14px;">Band Name</div>
+            <input [(ngModel)]="bandname" name="BandName" id="BandName" class="textbox" type="text" value={{band.bandName}}>
+            <div style="font-weight: bold; font-size: 14px;">Country</div>
+            <input [(ngModel)]="country" name="Country" id="Country" class="textbox" type="text" value={{band.country}}>
+            <div style="font-weight: bold; font-size: 14px;">Status</div>
+            is the band active? <input [(ngModel)]="active" name="Active" id="Active" type="checkbox" value={{band.active}}>
+            <div style="font-weight: bold; font-size: 14px;">Start Year</div>
+            <input [(ngModel)]="startyear" name="StartYear" id="StartYear" class="textbox" type="number" [value]="band.startYear">
+            <div style="font-weight: bold; font-size: 14px;">End Year</div>
+            <input [(ngModel)]="endyear" name="EndYear" id="EndYear" class="textbox" type="number" [value]="band.endYear || null">
+            <div>
+                <button (click)="updateBand(band.band_Id)" class="updateButton" style="width: 47%; color: #F5F4EC;">Update</button>
+                <button (click)="toggleView()" class="cancelButton" style="width: 47%; margin-left: 5%;">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

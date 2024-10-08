@@ -1,0 +1,31 @@
+<!--{{this.users[1].userName}}-->
+
+
+<main>
+    <h2>
+        Here is a list of all users! Once deleted, they are gone forever!
+    </h2>
+    <div class="Content">
+    <div class="ListHeader" style="width: 976px;">
+        <div style="width: 64px;"></div>
+        <div style="width: 32px;">ID</div>
+        <div style="width: 96px;">First Name</div>
+        <div style="width: 96px;">Last Name</div>
+        <div style="width: 224px;">Username</div>
+        <div style="width: 224px;">Email</div>
+        <div style="width: 192px;">Password</div>
+    </div>
+        <div>@for (user of users; track this.users) { 
+                <li  *ngIf="user.userName !== 'Admin'" style="width: 976px;">
+                    <button (click)="deleteUser(user.user_Id)" *ngIf="user.userName !== 'Admin'">Delete</button>
+                    <div style="width: 32px;">{{user.user_Id}}</div>
+                    <div style="width: 96px;">{{user.firstName}}</div>
+                    <div style="width: 96px;">{{user.lastName}}</div>
+                    <div style="width: 224px;">{{user.userName}}</div>
+                    <div style="width: 224px;">{{user.email}}</div>
+                    <div style="width: 192px;">{{user.password}}</div>
+                </li>
+            }
+        </div>
+    </div>
+</main>
