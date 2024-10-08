@@ -1,0 +1,6 @@
+@ToneForum_HostAddress = http://localhost:5217
+
+GET {{ToneForum_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
