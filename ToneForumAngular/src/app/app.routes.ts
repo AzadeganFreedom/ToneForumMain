@@ -12,7 +12,7 @@ import { CollectionComponent } from './components/collection/collection.componen
 import { SubmitArtistComponent } from './components/submit-artist/submit-artist.component';
 import { SubmitReleaseComponent } from './components/submit-release/submit-release.component';
 import { WantlistComponent } from './components/wantlist/wantlist.component';
-import { ReleaseComponent } from './components/release/release.component';
+import { ReleaseComponent } from './components/released/release.component';
 import { EditReleaseComponent } from './components/edit-release/edit-release.component';
 import { EditArtistComponent } from './components/edit-artist/edit-artist.component';
 
