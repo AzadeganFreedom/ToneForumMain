@@ -16,11 +16,16 @@
             <p>Type: {{getTypeName(release.type_Id)}}</p>
             <!-- Add more fields as needed -->
         </div>
-        <div *ngIf="release" style="justify-content: flex-end; margin-left: 300px;">
-            <p style="height: 24px; width: 200px; margin-top: 20px; margin-bottom: 8px; font-weight: bold; border-bottom: 0.1px solid #31312F;">Release</p>
-            <a (click)="onEditRelease(release.release_Id)" style="font-size: 16px;">Edit Release</a>
+        <div *ngIf="release" style="justify-content: flex-end; margin-left: 236px;">
+            <p style="height: 24px; width: 200px; margin-top: 20px; margin-bottom: 8px; margin-left: 64px; font-weight: bold; border-bottom: 0.1px solid #31312F;">Release</p>
+            <a (click)="onEditRelease(release.release_Id)" style="font-size: 16px; margin-left: 64px;">Edit Release</a>
             <br>
-            <!--<a (click)="onSubmitRelease(band.band_Id)" style="font-size: 16px;">Submit Release</a>-->
+            <div *ngIf="activeUser" style="width: 280px;">
+                <button *ngIf="!isAddedToCollection(release.release_Id)" (click)="addToCollection(activeUser.user_Id, release.release_Id)" style="margin-left: auto;">Add to Collection</button>
+                <button *ngIf="isAddedToCollection(release.release_Id)" style="margin-left: auto; background-color: lightgreen; color: black;">Added to Collection</button>
+                <button *ngIf="!isAddedToWantlist(release.release_Id)" (click)="addToWantlist(activeUser.user_Id, release.release_Id)" style="margin-left: 8px;">Add to Wantlist</button>
+                <button *ngIf="isAddedToWantlist(release.release_Id)" style="margin-left: 8px; background-color: lightgreen; color: black;">Added to Wantlist</button>
+            </div>
           </div>
   
         <div *ngIf="!release">

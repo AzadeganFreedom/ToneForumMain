@@ -46,8 +46,8 @@
                     <div *ngIf="activeUser" class="releaseButtons">
                         <button *ngIf="!isAddedToCollection(release.release_Id)" (click)="addToCollection(activeUser.user_Id, release.release_Id)" style="margin-left: auto;">Add to Collection</button>
                         <button *ngIf="isAddedToCollection(release.release_Id)" style="margin-left: auto; background-color: lightgreen; color: black;">Added to Collection</button>
-                        <button *ngIf="!isAddedToWantlist(release.release_Id)" (click)="addToWantlist(activeUser.user_Id, release.release_Id)" style="margin-left: 8px;">Add to Wantlist</button>
-                        <button *ngIf="isAddedToWantlist(release.release_Id)" style="margin-left: 8px; background-color: lightgreen; color: black;">Added to Wantlist</button>
+                        <button *ngIf="!isAddedToWantlist(release.release_Id)" (click)="addToWantlist(activeUser.user_Id, release.release_Id)" style="margin-left: 8px; margin-right: 8px;">Add to Wantlist</button>
+                        <button *ngIf="isAddedToWantlist(release.release_Id)" style="margin-left: 8px; margin-right: 8px; background-color: lightgreen; color: black;">Added to Wantlist</button>
                     </div>
                 </div>
             </div>

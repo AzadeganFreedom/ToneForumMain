@@ -90,4 +90,15 @@ export class ServerService {
     return this.http.delete<T>(apiUrl);
   }
 
+  // Remove Release from Collection
+  removeFromCollection<T>(listId: number, releaseId: number):Observable<T> {
+    const apiUrl = `https://localhost:7131/api/CollectionList/${listId}?releaseId=${releaseId}`;
+    return this.http.delete<T>(apiUrl, { responseType: 'json' as const });
+  }
+
+  // Remove Release from Wantlist
+  removeFromWantlist<T>(listId: number, releaseId: number):Observable<T> {
+    const apiUrl = `https://localhost:7131/api/Wantlist/${listId}?releaseId=${releaseId}`;
+    return this.http.delete<T>(apiUrl, { responseType: 'json' as const });
+  }
 }

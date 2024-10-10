@@ -1,1 +1,25 @@
-<p>collection works!</p>
+<main>
+    <div class="collectionBox">
+        <div class="header">Collection</div>
+        <div class="content" *ngFor="let release of this.releases">
+            <img style="width: 75px; height: 75px; margin-left: 8px;">
+            <div class="releaseInfo">
+                <div>
+                    <a (click)="onBand(release.band_Id)">
+                        {{this.getBandName(release.band_Id)}}
+                    </a> - 
+                    <a (click)="onRelease(release.release_Id)">
+                        {{release.releaseName}}
+                    </a>
+                </div>
+                <div>
+                    {{this.getTypeName(release.type_Id)}}
+                </div>
+                <div>
+                    {{release.releaseYear}}
+                </div>
+            </div>
+            <button (click)="onRemove(activeUser.user_Id,release.release_Id)">Remove</button>
+        </div>
+    </div>
+</main>
