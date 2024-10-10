@@ -40,7 +40,7 @@ export class ReleaseComponent implements OnInit {
       this.activeUser = user;
     });
 
-    // Handling of band changes dynamically
+    // Handling of release changes dynamically
     this.route.params.subscribe(params => {
       const releaseId = params['id']; // Get releaseId from the route
       

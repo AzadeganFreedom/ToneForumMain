@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToneForum.API", "ToneForum.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToneForum.Repository", "..\ToneForum.Repository\ToneForum.Repository.csproj", "{115F8177-31E1-4CFB-A46C-89F7F441CC98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToneForumTest", "..\ToneForumTest\ToneForumTest.csproj", "{F5F065F2-5577-42A1-B8F0-1F712145D2E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{115F8177-31E1-4CFB-A46C-89F7F441CC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{115F8177-31E1-4CFB-A46C-89F7F441CC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{115F8177-31E1-4CFB-A46C-89F7F441CC98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F065F2-5577-42A1-B8F0-1F712145D2E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F065F2-5577-42A1-B8F0-1F712145D2E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F065F2-5577-42A1-B8F0-1F712145D2E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F065F2-5577-42A1-B8F0-1F712145D2E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -48,8 +48,8 @@
       <button (click)="toggleDropdown()" class="button2">{{activeUser.userName}}</button>
       <div *ngIf="isDropdownOpen" class="dropdown-content">
         <a href="http://localhost:4200/Profile">Profile</a>
-        <a href="http://localhost:4200/Collection">Collection</a>
-        <a href="http://localhost:4200/Wantlist">Want List</a>
+        <a (click)="onCollection()">Collection</a>
+        <a (click)="onWantlist()">Wantlist</a>
         <a (click)="clearUser()" href="http://localhost:4200/Start">Sign Out</a>
       </div>
     </div>

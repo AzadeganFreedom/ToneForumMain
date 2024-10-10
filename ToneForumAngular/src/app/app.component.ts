@@ -156,6 +156,18 @@ export class AppComponent implements OnInit {
     this.service.clearActiveUser();
   }
 
+  // When selecting Collection
+  onCollection() {
+    this.router.navigate([`/Collection/${this.activeUser.user_Id}`]);
+    this.toggleDropdown();
+  }
+
+  // When selecting Wantlist
+  onWantlist() {
+    this.router.navigate([`/Wantlist/${this.activeUser.user_Id}`]);
+    this.toggleDropdown();
+  }
+
   /*searchUser() {
     this.service.getByName<User>('https://localhost:7131/api/User/GetUserByUserName?userName=', this.searchUsername).subscribe(user => {
       console.log(user);  // This will log the User object with name 'John'
