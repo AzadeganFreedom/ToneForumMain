@@ -17,27 +17,35 @@ namespace ToneForum.API.Controllers
         }
 
         // Create: 
-        [HttpPost("CreateBand")] // Add Genre to database
+        [HttpPost("CreateBand")] // Add Band to database
         public async Task<IActionResult> CreateBand(Band band)
         {
-            if (band == null)
+            try
             {
-                return BadRequest("Band is null.");
-            }
+                if (band == null)
+                {
+                    return BadRequest("Band is null.");
+                }
 
-            // Check if Band already exists in database
-            var bandCheck = await repo.GetBandByBandName(band.BandName);
-            if (bandCheck == null) // If it doesn't exist, create Band
-            {
-                var newBandCreated = await repo.CreateBand(band);
-            }
-            else // If it does exist, BadRequest
-            {
-                return BadRequest("A band with this name already exists!");
-            }
+                // Check if Band already exists in database
+                var bandCheck = await repo.GetBandByBandName(band.BandName);
+                if (bandCheck == null) // If it doesn't exist, create Band
+                {
+                    var newBandCreated = await repo.CreateBand(band);
+                }
+                else // If it does exist, BadRequest
+                {
+                    return BadRequest("A band with this name already exists!");
+                }
 
-            // Return the newly created user
-            return CreatedAtAction(nameof(GetBandById), new { id = band.Band_Id }, band);
+                // Return the newly created user
+                return CreatedAtAction(nameof(GetBandById), new { id = band.Band_Id }, band);
+            }
+            catch (Exception ex) 
+            {
+                return StatusCode(500, "Internal server error. Please try again later.");
+            }
+            
         }
 
         [HttpPost("CreateBand2")]
@@ -52,35 +60,61 @@ namespace ToneForum.API.Controllers
         [HttpGet("GetAllBands")] // Get all bands
         public async Task<IActionResult> GetAllBands()
         {
-            var allBands = await repo.GetAllBands();
+            try
+            {
+                var allBands = await repo.GetAllBands();
 
-            return Ok(allBands);
+                if (allBands == null || !allBands.Any())
+                {
+                    return NotFound("No bands found.");
+                }
+
+                return Ok(allBands);
+            }
+            catch (Exception ex) 
+            {
+                return StatusCode(500, "Internal server error. Please try again later.");
+            }
         }
 
         [HttpGet("{id:int}")] // Get Band by Id
         public async Task<IActionResult> GetBandById(int id)
         {
-            var selectedBand = await repo.GetBandById(id);
-
-            if (selectedBand == null)
+            try
             {
-                return NotFound();
-            }
+                var selectedBand = await repo.GetBandById(id);
 
-            return Ok(selectedBand);
+                if (selectedBand == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(selectedBand);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error. Please try again later.");
+            }
         }
 
         [HttpGet("GetBandByBandName")] // Get band by BandName
         public async Task<IActionResult> GetBandByBandName(string bandName)
         {
-            var selectedBand = await repo.GetBandByBandName(bandName);
-
-            if (selectedBand == null)
+            try
             {
-                return NotFound();
-            }
+                var selectedBand = await repo.GetBandByBandName(bandName);
 
-            return Ok(selectedBand);
+                if (selectedBand == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(selectedBand);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error. Please try again later.");
+            }
         }
 
         //##############################################################################################################
@@ -89,37 +123,52 @@ namespace ToneForum.API.Controllers
         [HttpPatch("{id:int}")] // Update Band by Id
         public async Task<IActionResult> UpdateBandById(int id, [FromBody] Band updatedBandData)
         {
-            if (updatedBandData == null)
+            try
             {
-                return BadRequest("Invalid band data.");
+                if (updatedBandData == null)
+                {
+                    return BadRequest("Invalid band data.");
+                }
+
+                var selectedBand = await repo.UpdateBandById(id, updatedBandData);
+
+                if (selectedBand == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(selectedBand);
             }
-
-            var selectedBand = await repo.UpdateBandById(id, updatedBandData);
-
-            if (selectedBand == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                return StatusCode(500, "Internal server error. Please try again later.");
             }
-
-            return Ok(selectedBand);
         }
 
         [HttpPatch("UpdateBandByBandName")] // Update Band by BandName
         public async Task<IActionResult> UpdateBandByBandName(string bandName, [FromBody] Band updatedBandData)
         {
-            if (updatedBandData == null)
+            try
             {
-                return BadRequest("Invalid band data.");
+                if (updatedBandData == null)
+                {
+                    return BadRequest("Invalid band data.");
+                }
+
+                var selectedBand = await repo.UpdateBandByBandName(bandName, updatedBandData);
+
+                if (selectedBand == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(selectedBand);
             }
-
-            var selectedBand = await repo.UpdateBandByBandName(bandName, updatedBandData);
-
-            if (selectedBand == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                return StatusCode(500, "Internal server error. Please try again later.");
             }
-
-            return Ok(selectedBand);
+            
         }
 
         //##############################################################################################################
@@ -128,27 +177,43 @@ namespace ToneForum.API.Controllers
         [HttpDelete("{id:int}")] // Delete Band by Id (Admin Only)
         public async Task<IActionResult> DeleteBandById(int id)
         {
-            var selectedBand = await repo.DeleteBandById(id);
-
-            if (selectedBand == null)
+            try
             {
-                return NotFound();
+                var selectedBand = await repo.DeleteBandById(id);
+
+                if (selectedBand == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(selectedBand);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error. Please try again later.");
             }
 
-            return Ok(selectedBand);
         }
 
         [HttpDelete("DeleteBandByBandName")] // Delete Band by BandName (Admin Only)
         public async Task<IActionResult> DeleteBandByBandName(string bandName)
         {
-            var selectedBand = await repo.DeleteBandByBandName(bandName);
-
-            if (selectedBand == null)
+            try
             {
-                return NotFound();
-            }
+                var selectedBand = await repo.DeleteBandByBandName(bandName);
 
-            return Ok(selectedBand);
+                if (selectedBand == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(selectedBand);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error. Please try again later.");
+            }
+            
         }
     }
 }
